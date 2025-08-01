@@ -31,13 +31,13 @@ class MainActivity : AppCompatActivity() {
         val height = get("height", 0f)
         val timestamp = get("timestamp", 0L)
 
-//        Log.d("EasyPrefsTest", """
-//            Name: $name
-//            Age: $age
-//            LoggedIn: $isLoggedIn
-//            Height: $height
-//            Timestamp: $timestamp
-//        """.trimIndent())
+        Log.d("EasyPrefsTest", """
+            Name: $name
+            Age: $age
+            LoggedIn: $isLoggedIn
+            Height: $height
+            Timestamp: $timestamp
+        """.trimIndent())
 
         // Delete a key
         delete("user_name")
