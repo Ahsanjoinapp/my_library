@@ -17,29 +17,37 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val prefs = EasyPrefs(this)
         // Save values
-        save("user_name" to "Rahul")
-        save("age" to 25)
-        save("is_logged_in" to true)
-        save("height" to 175.5f)  // Example of Float
-        save("timestamp" to System.currentTimeMillis())  // Example of Long
+        prefs.save("user_name" to "Rahul")
+        prefs.save("age" to 25)
+        prefs.save("is_logged_in" to true)
+        prefs.save("height" to 175.5f)  // Example of Float
+        prefs.save("timestamp" to System.currentTimeMillis())  // Example of Long
 
         // Retrieve values
-        val name = get("user_name", "")
-        val age = get("age", 0)
-        val isLoggedIn = get("is_logged_in", false)
-        val height = get("height", 0f)
-        val timestamp = get("timestamp", 0L)
+        val name = prefs.get("user_name", "")
+        val age = prefs.get("age", 0)
+        val isLoggedIn = prefs.get("is_logged_in", false)
+        val height = prefs.get("height", 0f)
+        val timestamp = prefs.get("timestamp", 0L)
+
+        prefs.saveObject("user",User("Ahsan",20))
+
+        val user = prefs.getObject<User>("user")
 
         Log.d("EasyPrefsTest", """
-            Name: $name
-            Age: $age
+            Name: ${user?.name}
+            Age: ${user?.age}
             LoggedIn: $isLoggedIn
             Height: $height
             Timestamp: $timestamp
         """.trimIndent())
 
+
+
+
         // Delete a key
-        delete("user_name")
+        prefs.delete("user_name")
     }
 }
